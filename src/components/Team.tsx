@@ -1,3 +1,5 @@
+import navneetImg from '../assets/images/projects/Navneet.jpg';
+import harshitImg from '../assets/images/projects/harshit.png';
 
 import React from 'react';
 
@@ -16,27 +18,29 @@ const Team: React.FC = () => {
         <div className="lg:w-1/2 grid grid-cols-2 gap-8 md:gap-16">
           <div className="space-y-6">
             <div className="aspect-[3/4] bg-neutral-100 dark:bg-neutral-900 overflow-hidden group">
-              <img 
-                src="/assets/images/projects/20231203_123046.jpg" 
-                alt="NAVNEET" 
-                className="w-full h-full object-cover filter grayscale scale-100 transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110" 
-                style={{objectPosition: 'top 30%'}}
+              <img
+                src={navneetImg}
+                alt="NAVNEET"
+                className="w-full h-full object-cover filter grayscale scale-100 transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110"
+                style={{ objectPosition: 'top 30%' }}
               />
+
             </div>
             <div>
               <h4 className="font-serif text-xl tracking-tight text-black dark:text-white">NAVNEET</h4>
               <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 mt-1">Founder / Web Designer</p>
             </div>
           </div>
-          
+
           <div className="space-y-6">
             <div className="aspect-[3/4] bg-neutral-100 dark:bg-neutral-900 overflow-hidden group">
-              <img 
-                src="/assets/images/projects/harshit.png" 
-                alt="HARSHIT" 
-                className="w-full h-full object-cover filter grayscale scale-100 transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110" 
-                style={{objectPosition: 'top 30%'}}
+              <img
+                src={harshitImg}
+                alt="HARSHIT"
+                className="w-full h-full object-cover filter grayscale scale-100 transition-all duration-300 group-hover:grayscale-0 group-hover:scale-110"
+                style={{ objectPosition: 'top 30%' }}
               />
+
             </div>
             <div>
               <h4 className="font-serif text-xl tracking-tight text-black dark:text-white">HARSHIT</h4>

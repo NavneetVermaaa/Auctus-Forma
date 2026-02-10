@@ -26,22 +26,23 @@ const App: React.FC = () => {
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-500">
-      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-      <main>
-        <Hero />
-        <ValueProp />
-        <Services />
-        <Workflow />
-        <SelectedWork />
-        <Process />
-        <Team />
-        <Testimonial />
-        <ContactForm />
-      </main>
-      <Footer />
-    </div>
-  );
+  <div>
+    <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+    <Hero />
+    <ValueProp />
+    <Services />
+    <Workflow />
+    <SelectedWork />
+    <Process />
+    <Team />
+    <Testimonial />
+    <ContactForm />
+    <Footer />
+  </div>
+);
+
+
+
 };
 
 export default App;
