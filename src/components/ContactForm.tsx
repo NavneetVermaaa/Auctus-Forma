@@ -6,6 +6,13 @@ const ContactForm: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
+  // Initialize EmailJS
+  useEffect(() => {
+    if (import.meta.env.VITE_EMAILJS_PUBLIC_KEY) {
+      emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+    }
+  }, []);
+
   // Auto hide success message after 4 seconds
   useEffect(() => {
     if (success) {
@@ -42,6 +49,25 @@ const ContactForm: React.FC = () => {
       to_email: 'navneet.v0000001@gmail.com'
     };
 
+    // Validate environment variables
+    if (!import.meta.env.VITE_EMAILJS_SERVICE_ID || 
+        !import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 
+        !import.meta.env.VITE_EMAILJS_PUBLIC_KEY) {
+      console.error('Missing EmailJS configuration');
+      setError(true);
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Log environment variables for debugging (remove in production)
+    console.log('EmailJS Config:', {
+      serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY?.substring(0, 10) + '...'
+    });
+    
+    console.log('Template Params:', templateParams);
+
     emailjs
       .send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -49,12 +75,18 @@ const ContactForm: React.FC = () => {
         templateParams,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
-      .then(() => {
+      .then((result) => {
+        console.log('Email sent successfully:', result.text);
         form.reset();
         setSuccess(true);
       })
       .catch((err) => {
         console.error('Email send failed:', err);
+        console.error('Error details:', {
+          status: err.status,
+          text: err.text,
+          message: err.message
+        });
         setError(true);
       })
       .finally(() => {
