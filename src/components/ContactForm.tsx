@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -7,10 +8,36 @@ const ContactForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    const templateParams = {
+      name: formData.get('name'),
+      company: formData.get('company'),
+      budget: formData.get('budget'),
+      vision: formData.get('vision'),
+      to_email: 'navneet.v0000001@gmail.com'
+    };
+
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      templateParams,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
+    .then((result) => {
+      console.log('Email sent successfully:', result.text);
       alert("Application received. We will be in touch shortly.");
+      form.reset();
+    })
+    .catch((error) => {
+      console.error('Email send failed:', error.text);
+      alert("Failed to send application. Please try again.");
+    })
+    .finally(() => {
       setIsSubmitting(false);
-    }, 1500);
+    });
   };
 
   return (
@@ -37,27 +64,27 @@ const ContactForm: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 font-bold">Name</label>
-                <input id="name" required type="text" className="w-full border-b border-neutral-200 dark:border-neutral-800 py-3 outline-none focus:border-black dark:focus:border-white transition-colors bg-transparent placeholder:text-neutral-200 dark:placeholder:text-neutral-800 text-black dark:text-white" placeholder="Your full name" />
+                <input id="name" name="name" required type="text" className="w-full border-b border-neutral-200 dark:border-neutral-800 py-3 outline-none focus:border-black dark:focus:border-white transition-colors bg-transparent placeholder:text-neutral-200 dark:placeholder:text-neutral-800 text-black dark:text-white" placeholder="Your full name" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="company" className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 font-bold">Company</label>
-                <input id="company" required type="text" className="w-full border-b border-neutral-200 dark:border-neutral-800 py-3 outline-none focus:border-black dark:focus:border-white transition-colors bg-transparent placeholder:text-neutral-200 dark:placeholder:text-neutral-800 text-black dark:text-white" placeholder="Venture or Brand" />
+                <input id="company" name="company" required type="text" className="w-full border-b border-neutral-200 dark:border-neutral-800 py-3 outline-none focus:border-black dark:focus:border-white transition-colors bg-transparent placeholder:text-neutral-200 dark:placeholder:text-neutral-800 text-black dark:text-white" placeholder="Venture or Brand" />
               </div>
             </div>
 
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 font-bold">Budget Range</label>
-              <select required className="w-full border-b border-neutral-200 dark:border-neutral-800 py-3 outline-none focus:border-black dark:focus:border-white transition-colors bg-transparent appearance-none text-black dark:text-white">
+              <select name="budget" required className="w-full border-b border-neutral-200 dark:border-neutral-800 py-3 outline-none focus:border-black dark:focus:border-white transition-colors bg-transparent appearance-none text-black dark:text-white">
                 <option value="" className="bg-white dark:bg-black">Select a range</option>
-                <option value="15-25k" className="bg-white dark:bg-black">$15,000 – $25,000</option>
-                <option value="25-50k" className="bg-white dark:bg-black">$25,000 – $50,000</option>
-                <option value="50k+" className="bg-white dark:bg-black">$50,000+</option>
+                <option value="5k-10k" className="bg-white dark:bg-black">5k-10k</option>
+                <option value="10k-15k" className="bg-white dark:bg-black">10k-15k</option>
+                <option value="15k-20k" className="bg-white dark:bg-black">15k-20k</option>
               </select>
             </div>
 
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-600 font-bold">Project Vision</label>
-              <textarea required rows={4} className="w-full border-b border-neutral-200 dark:border-neutral-800 py-3 outline-none focus:border-black dark:focus:border-white transition-colors bg-transparent resize-none placeholder:text-neutral-200 dark:placeholder:text-neutral-800 text-black dark:text-white" placeholder="Tell us about the intelligence you want to build..."></textarea>
+              <textarea name="vision" required rows={4} className="w-full border-b border-neutral-200 dark:border-neutral-800 py-3 outline-none focus:border-black dark:focus:border-white transition-colors bg-transparent resize-none placeholder:text-neutral-200 dark:placeholder:text-neutral-800 text-black dark:text-white" placeholder="Tell us about the intelligence you want to build..."></textarea>
             </div>
 
             <button 
