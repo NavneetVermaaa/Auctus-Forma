@@ -2,7 +2,7 @@
 
 ## Folder Structure Created:
 ```
-C:\Users\navne\Downloads\auctus-forma---premium-web-&-ai-agency (1)\assets\videos\
+C:\Users\navne\Documents\CODDING\AUCTUS FORMA\assets\videos\
 ```
 
 ## How to Upload Your Videos:
@@ -40,7 +40,7 @@ C:\Users\navne\Downloads\auctus-forma---premium-web-&-ai-agency (1)\assets\video
 - ✅ Add fallback poster image if needed
 
 ### 5. **Current Folder Path:**
-📁 `C:\Users\navne\Downloads\auctus-forma---premium-web-&-ai-agency (1)\assets\videos\`
+📁 `C:\Users\navne\Documents\CODDING\AUCTUS FORMA\assets\videos\`
 
 ### 6. **Hero Video Status:**
 - ✅ Video element added to Hero.tsx

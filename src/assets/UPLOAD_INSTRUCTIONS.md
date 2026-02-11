@@ -2,7 +2,7 @@
 
 ## Folder Structure Created:
 ```
-C:\Users\navne\Downloads\auctus-forma---premium-web-&-ai-agency (1)\assets\images\projects\
+C:\Users\navne\Documents\CODDING\AUCTUS FORMA\assets\images\projects\
 ```
 
 ## How to Upload Your Images:
@@ -53,4 +53,4 @@ const projects = [
 - ✅ Backup your images externally as well
 
 ## Current Folder Path:
-📁 `C:\Users\navne\Downloads\auctus-forma---premium-web-&-ai-agency (1)\assets\images\projects\`
+📁 `C:\Users\navne\Documents\CODDING\AUCTUS FORMA\assets\images\projects\`
