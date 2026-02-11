@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
+import quoraImg from '../assets/images/projects/quora.png';
+import vdigtechImg from '../assets/images/projects/vdigtech.png';
 
 const SelectedWork: React.FC = () => {
   useScrollAnimation();
@@ -11,7 +13,7 @@ const SelectedWork: React.FC = () => {
       title: "Quora - Smart Home",
       category: "IoT Platform",
       system: "Template-Based Smart Home System",
-      image: "https://framerusercontent.com/images/9aoIq4K86s3G3Hoee6q2ANpmQs8.jpeg",
+      image: quoraImg,
       url: "https://heavenly-lottery-071251.framer.app/"
     },
     {
@@ -25,7 +27,7 @@ const SelectedWork: React.FC = () => {
       title: "VDigtech",
       category: "Digital Marketing Agency",
       system: "Full-Stack Digital Solutions",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=85&w=1260&h=1750",
+      image: vdigtechImg,
       url: "https://vdigtech.com/digital-marketing/"
     },
     // {
