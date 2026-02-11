@@ -3,42 +3,76 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="py-20 px-6 border-t border-neutral-100 dark:border-neutral-900 bg-white dark:bg-black transition-colors duration-500">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
-        <div className="space-y-6 text-center md:text-left">
-          <div className="font-serif text-2xl tracking-tighter uppercase font-bold text-black dark:text-white">
-            Auctus <span className="font-normal italic text-neutral-400 dark:text-neutral-600">Forma</span>
-          </div>
-          <p className="text-[11px] tracking-[0.2em] uppercase text-neutral-400 dark:text-neutral-600 max-w-[200px] leading-relaxed">
-            Design precision & AI Engineering.
-          </p>
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-12 md:gap-32 text-center md:text-left">
-          <div className="space-y-4">
-            <h5 className="text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-900 dark:text-neutral-100">Inquiries</h5>
-            <p className="text-[11px] text-neutral-500 dark:text-neutral-400 uppercase tracking-[0.1em]">hello@auctusforma.com</p>
+    <footer className="relative bg-black dark:bg-black text-white py-16 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-black to-neutral-900"></div>
+      </div>
+      
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          {/* Brand Section */}
+          <div className="space-y-6">
+            <div className="font-serif text-3xl tracking-tighter font-bold text-white">
+              Auctus <span className="font-normal italic text-neutral-400">Forma</span>
+            </div>
+            <p className="text-sm text-neutral-400 leading-relaxed max-w-sm">
+              Crafting intelligent digital experiences through precision design and advanced AI engineering.
+            </p>
+            <div className="flex space-x-4">
+              <a 
+                href="https://wa.me/919322962133" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs uppercase tracking-[0.2em] font-medium transition-colors rounded-sm"
+              >
+                WhatsApp
+              </a>
+              <a 
+                href="mailto:navneet.v0000001@gmail.com" 
+                className="px-4 py-2 border border-neutral-700 hover:border-neutral-500 text-white text-xs uppercase tracking-[0.2em] font-medium transition-colors rounded-sm"
+              >
+                Email
+              </a>
+            </div>
           </div>
           
-          <div className="space-y-4">
-            <h5 className="text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-900 dark:text-neutral-100">Studio</h5>
-            <p className="text-[11px] text-neutral-500 dark:text-neutral-400 uppercase tracking-[0.1em]">London / Paris</p>
+          {/* Navigation */}
+          <div className="space-y-6">
+            <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-neutral-400">Navigate</h3>
+            <nav className="space-y-3">
+              <a href="#work" className="block text-sm text-neutral-300 hover:text-white transition-colors">Selected Work</a>
+              <a href="#services" className="block text-sm text-neutral-300 hover:text-white transition-colors">Services</a>
+              <a href="#process" className="block text-sm text-neutral-300 hover:text-white transition-colors">Process</a>
+              <a href="#contact" className="block text-sm text-neutral-300 hover:text-white transition-colors">Get in Touch</a>
+            </nav>
           </div>
-
-          <div className="space-y-4">
-            <h5 className="text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-900 dark:text-neutral-100">Social</h5>
-            <div className="flex justify-center md:justify-start gap-6">
-              <a href="#" className="text-[11px] text-neutral-400 hover:text-black dark:text-neutral-500 dark:hover:text-white uppercase tracking-[0.1em]">LN</a>
-              <a href="#" className="text-[11px] text-neutral-400 hover:text-black dark:text-neutral-500 dark:hover:text-white uppercase tracking-[0.1em]">IG</a>
-              <a href="#" className="text-[11px] text-neutral-400 hover:text-black dark:text-neutral-500 dark:hover:text-white uppercase tracking-[0.1em]">TW</a>
+          
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-neutral-400">Connect</h3>
+            <div className="space-y-3">
+              <a href="mailto:navneet.v0000001@gmail.com" className="block text-sm text-neutral-300 hover:text-white transition-colors">
+                navneet.v0000001@gmail.com
+              </a>
+              <a href="https://wa.me/919322962133" target="_blank" rel="noopener noreferrer" className="block text-sm text-neutral-300 hover:text-white transition-colors">
+                +91 93229 62133
+              </a>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto mt-20 flex justify-between items-center pt-8 border-t border-neutral-50 dark:border-neutral-950">
-        <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-300 dark:text-neutral-800">© 2024 Auctus Forma Studio. All rights reserved.</p>
-        <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-300 dark:text-neutral-800">Privacy / Terms</p>
+        
+        {/* Bottom Bar */}
+        <div className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-xs text-neutral-500 uppercase tracking-[0.2em]">
+            © 2024 Auctus Forma. All rights reserved.
+          </p>
+          <div className="flex space-x-8">
+            <a href="#" className="text-xs text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.1em]">Privacy</a>
+            <a href="#" className="text-xs text-neutral-500 hover:text-white transition-colors uppercase tracking-[0.1em]">Terms</a>
+          </div>
+        </div>
       </div>
     </footer>
   );

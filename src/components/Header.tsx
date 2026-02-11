@@ -14,21 +14,27 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, isDarkMode }) => {
           Auctus <span className="font-normal italic text-neutral-400 dark:text-neutral-600">Forma</span>
         </div>
         
-        <div className="flex items-center space-x-12">
-          <nav className="hidden md:flex space-x-12 text-[11px] uppercase tracking-[0.2em] font-medium text-neutral-500 dark:text-neutral-400">
-            <a href="#work" className="hover:text-black dark:hover:text-white transition-colors">Selected Work</a>
-            <a href="#services" className="hover:text-black dark:hover:text-white transition-colors">Services</a>
-            <a href="#process" className="hover:text-black dark:hover:text-white transition-colors">Process</a>
-            <a href="#contact" className="hover:text-black dark:hover:text-white transition-colors">Contact</a>
-          </nav>
-          
-          <button 
-            onClick={toggleTheme}
-            className="text-[10px] tracking-[0.3em] uppercase border border-neutral-200 dark:border-neutral-800 px-4 py-2 rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300"
-          >
-            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-          </button>
-        </div>
+        <nav className="hidden md:flex space-x-12 text-[11px] uppercase tracking-[0.2em] font-medium text-neutral-500 dark:text-neutral-400">
+          <a href="#work" className="hover:text-black dark:hover:text-white transition-colors">Selected Work</a>
+          <a href="#services" className="hover:text-black dark:hover:text-white transition-colors">Services</a>
+          <a href="#process" className="hover:text-black dark:hover:text-white transition-colors">Process</a>
+          <a href="#contact" className="hover:text-black dark:hover:text-white transition-colors">Contact</a>
+        </nav>
+
+        <button 
+          onClick={toggleTheme}
+          className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-300"
+        >
+          {isDarkMode ? (
+            <svg className="w-5 h-5 text-neutral-600 dark:text-neutral-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-14a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 18a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zm9-9a1 1 0 0 1 0 2h-2a1 1 0 1 1 0-2h2zM5 12a1 1 0 0 1 0 2H3a1 1 0 1 1 0-2h2zm12.071-6.071a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0zM8.757 16.243a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0zm6.485 0a1 1 0 0 1 1.414 0l1.414 1.414a1 1 0 1 1-1.414 1.414l-1.414-1.414a1 1 0 0 1 0-1.414zM7.343 7.343a1 1 0 0 1 1.414 0l1.414 1.414a1 1 0 1 1-1.414 1.414L7.343 8.757a1 1 0 0 1 0-1.414z"/>
+            </svg>
+          ) : (
+            <svg className="w-5 h-5 text-neutral-600 dark:text-neutral-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3a9 9 0 1 0 9 9c0-.46-.046-.92-.136-1.364a5.5 5.5 0 0 1-7.5-7.5A9.027 9.027 0 0 0 12 3zm0 2a7 7 0 0 1 6.5 4.307 3.5 3.5 0 0 1 1.193 4.193A7 7 0 1 1 12 5z"/>
+            </svg>
+          )}
+        </button>
 
         <a 
           href="#contact" 

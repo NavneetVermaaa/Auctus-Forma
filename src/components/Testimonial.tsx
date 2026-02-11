@@ -14,8 +14,8 @@ const Testimonial: React.FC = () => {
         </blockquote>
 
         <div className="space-y-1">
-          <cite className="not-italic text-[11px] uppercase tracking-[0.3em] font-bold text-black dark:text-white">Arthur de Valois</cite>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500">CEO, Valois Private Equity</p>
+          <cite className="not-italic text-[11px] uppercase tracking-[0.3em] font-bold text-black dark:text-white">Rajiv Malhotra</cite>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500">Founder, Infinity Ventures</p>
         </div>
       </div>
     </section>
