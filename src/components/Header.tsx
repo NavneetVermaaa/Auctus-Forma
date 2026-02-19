@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface HeaderProps {
   toggleTheme: () => void;
@@ -8,25 +8,83 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ toggleTheme, isDarkMode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('work');
+
+  const navItems = [
+    { id: 'work', label: 'Selected Work' },
+    { id: 'services', label: 'Services' },
+    { id: 'process', label: 'Process' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    const sections = navItems.map(item => document.getElementById(item.id));
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  const getLinkClass = (sectionId: string) => {
+    const baseClass = 'transition-colors';
+    const activeClass = 'text-black dark:text-white';
+    const inactiveClass = 'hover:text-black dark:hover:text-white';
+    return `${baseClass} ${activeSection === sectionId ? activeClass : inactiveClass}`;
+  };
+
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-100 dark:border-neutral-900 transition-colors duration-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
-          <div className="font-serif text-xl sm:text-2xl tracking-tighter uppercase font-bold text-black dark:text-white">
-            Auctus <span className="font-normal italic text-neutral-400 dark:text-neutral-600">Forma</span>
+      <nav 
+        id="navbar" 
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-300 rounded-full ${
+          scrolled 
+            ? 'bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-lg py-2' 
+            : 'bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm py-4'
+        }`}
+        style={{
+          transform: scrolled ? 'translateX(-50%) translateY(0) scale(0.98)' : 'translateX(-50%) translateY(0) scale(1)',
+        }}
+      >
+        <div className="nav-container max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+          <div className="nav-logo font-serif text-xl sm:text-2xl tracking-tighter uppercase font-bold text-black dark:text-white">
+            Auctus<span className="font-normal italic text-neutral-400 dark:text-neutral-600">Forma</span>
           </div>
           
-          <nav className="hidden md:flex space-x-8 lg:space-x-12 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium text-neutral-500 dark:text-neutral-400">
-            <a href="#work" className="hover:text-black dark:hover:text-white transition-colors">Selected Work</a>
-            <a href="#services" className="hover:text-black dark:hover:text-white transition-colors">Services</a>
-            <a href="#process" className="hover:text-black dark:hover:text-white transition-colors">Process</a>
-            <a href="#contact" className="hover:text-black dark:hover:text-white transition-colors">Contact</a>
-          </nav>
+          <ul className="nav-links hidden md:flex space-x-8 lg:space-x-12 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium">
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a href={`#${item.id}`} className={getLinkClass(item.id)}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
 
           <div className="flex items-center space-x-3 sm:space-x-4">
             <button 
@@ -58,7 +116,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, isDarkMode }) => {
             </button>
           </div>
         </div>
-      </header>
+      </nav>
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
@@ -78,34 +136,21 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, isDarkMode }) => {
               </div>
               
               <nav className="flex flex-col space-y-6 mt-8">
-                <a 
-                  href="#work" 
-                  onClick={toggleMobileMenu}
-                  className="text-lg uppercase tracking-[0.2em] font-medium text-black dark:text-white hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors"
-                >
-                  Selected Work
-                </a>
-                <a 
-                  href="#services" 
-                  onClick={toggleMobileMenu}
-                  className="text-lg uppercase tracking-[0.2em] font-medium text-black dark:text-white hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors"
-                >
-                  Services
-                </a>
-                <a 
-                  href="#process" 
-                  onClick={toggleMobileMenu}
-                  className="text-lg uppercase tracking-[0.2em] font-medium text-black dark:text-white hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors"
-                >
-                  Process
-                </a>
-                <a 
-                  href="#contact" 
-                  onClick={toggleMobileMenu}
-                  className="text-lg uppercase tracking-[0.2em] font-medium text-black dark:text-white hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors"
-                >
-                  Contact
-                </a>
+                {navItems.map((item) => (
+                  <li key={item.id}>
+                    <a 
+                      href={`#${item.id}`} 
+                      onClick={toggleMobileMenu}
+                      className={`text-lg uppercase tracking-[0.2em] font-medium transition-colors ${
+                        activeSection === item.id 
+                          ? 'text-black dark:text-white' 
+                          : 'text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white'
+                      }`}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
               </nav>
             </div>
           </div>
